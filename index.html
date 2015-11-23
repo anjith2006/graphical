@@ -25,25 +25,22 @@
 
 		<ul class="navigation">
 			<li>
-				<a href="#">WHAT YOU GOT<span class="icon-angle-down"></span></a>
+				<a href="#">NAVIGATION<span class="icon-angle-down"></span></a>
 				<ul>
-					<li><a href="#getting-started">Getting Started</a></li>
-					<li><a href="#going-responsive">Going Responsive</a></li>
-					<li><a href="#forms">Forms</a></li>
-					<li><a href="#buttons">Buttons</a></li>
+					<li><a href="#Research">Research</a></li>
+					<li><a href="#Resume">Resume</a></li>
+
 				</ul>
 			</li>
 			<li>
-				<a href="#">UI KITS<span class="icon-angle-down"></span></a>
 				<ul>
-					<li><a href="project/ui/quill/example.html">Quill UI</a></li>
-					<li><a href="project/ui/stripe/example.html">Stripe UI</a></li>
+
 				</ul>
 			</li>
-			<li><a href="http://getwebplate.com/documentation">DOCUMENTATION</a></li>
+
 		</ul>
 
-		<div class="logo-container"><a href="#" class="logo-line">WEBPLATE</a></div>
+		<div class="logo-container"><a href="#" class="logo-line">ANJITH</a></div>
 
 	</div></nav>
 
@@ -74,336 +71,509 @@
 	<!-- Getting started -->
 	<div class="stripe" id="getting-started"><div class="contain">
 
-		<h3>Getting Started</h3>
-		<p>This is a simple process that requires you dropping a copy of the Webplate directory you just got into your project and including the <b>stack.js</b> file in your head tag. Below is a basic example and note that the <b>id</b> of <b>webplate-stack</b> is required.</p>
-
-<pre class="prettyprint linenums showcase-code">
-&lt;head&gt;
-    &lt;script id=&quot;webplate-stack&quot; src=&quot;[webplate]/stack.js&quot;&gt;
-&lt;/head&gt;
-</pre>
-
-		<p>In the above <b>[webplate]</b> is referencing the directory that houses the framework. By default it is often just called webplate and sits in your site root, but can be any name you wish. Just include the correct name in your stack call as above and all other paths will line up automatically.</p>
-
-		<p>The stack will load all the neccessary files required as well as give you the option to load your own <b>project</b> specific JS and CSS. To load project files add a data attribute to your <b>body</b> like the example below.</p>
-
-<pre class="prettyprint linenums showcase-code">
-&lt;body style="display: none;" data-project-css="welcome.css" data-project-js="welcome.js"&gt;
-</pre>
-
-		<p>The <b>style="display: none;"</b> attribute is used to prevent style snapping so that the page will only show once the files have been loaded. It is not required but recommended as all files are loaded asynchronously. From here on out you will have access to all Webplate plugins as well as all other third party vendor libraries like, <a href="http://jquery.com/">jQuery</a>, <a href="http://modernizr.com/">Modernizr</a>, <a href="http://typeplate.com/">Typeplate</a>, <a href="http://julian.com/research/velocity/">Velocity.js</a>, <a href="http://hammerjs.github.io/">Hammer.js</a> and icon font support to name a few.</p>
-
-		<p><b>Browser Support:</b> IE9+, Chrome, Firefox, Safari, Opera</p>
-
-	</div></div>
-
-	<!-- Layout -->
-	<div class="stripe" id="going-responsive"><div class="contain">
-
-		<h3>Going Responsive</h3>
-		<p>Webplate includes its custom built <a href="http://getwebplate.com/plugins/blueplate">Blueplate</a> layout engine and can be used in one of two ways. You can either build your layouts using the classing implementation or you can build it using the recommended mixin implementation (requires SASS). See a basic example of both below.</p>
-
-		<p>&nbsp;</p>
-		<h4>Classed Implementation</h4>
-		<p>HTML</p>
-
-<pre class="prettyprint linenums showcase-code">
-&lt;div class="class-example row"&gt;
-    &lt;div class="span-12 span-large-2"&gt;Left&lt;/div&gt;
-    &lt;div class="span-6 span-large-8"&gt;Middle&lt;/div&gt;
-    &lt;div class="span-6 span-large-2"&gt;Right&lt;/div&gt;
-&lt;/div&gt;
-</pre>
-
-		<p>RESULT (Screen Width: <span class="screen-width"></span>px)</p>
-
-		<div class="class-example row">
-
-			<div class="span-12 span-large-2">Left</div>
-			<div class="span-6 span-large-8">Middle</div>
-			<div class="span-6 span-large-2">Right</div>
-
-		</div>
-
-		<p>&nbsp;</p>
-		<h4>Mixin Implementation</h4>
-		<p>HTML</p>
-
-<pre class="prettyprint linenums showcase-code">
-&lt;div class="atomic-example"&gt;
-    &lt;div class="left-col"&gt;Left&lt;/div&gt;
-    &lt;div class="middle-col"&gt;Middle&lt;/div&gt;
-    &lt;div class="right-col"&gt;Right&lt;/div&gt;
-&lt;/div&gt;
-</pre>
-<p>SASS</p>
-<pre class="prettyprint linenums showcase-code">
-.atomic-example {
-    @include row();
-
-    // Columns - mobile first
-    .left-col, .right-col, .middle-col {
-        @include span(12);
-    }
-
-    // Over 700px
-    @include respond-to(large) {
-        .left-col {
-            @include span-new(6);
-        }
-        .middle-col, .right-col {
-            @include span-new(3);
-        }
-    }
-
-    // Over 800px
-    @include respond-to(50em) {
-        .left-col {
-            @include span-new(12);
-        }
-        .middle-col {
-            @include span-new(9);
-        }
-        .right-col {
-            @include span-new(3);
-        }
-    }
-
-    // Over 900px
-    @include respond-to(56.250em) {
-        .left-col, .right-col {
-            @include span-new(2);
-        }
-        .middle-col {
-            @include span-new(8);
-        }
-    }
-}
-</pre>
-
-		<p>RESULT (Screen Width: <span class="screen-width"></span>px)</p>
-
-		<div class="atomic-example">
-
-			<div class="left-col">Left</div>
-			<div class="middle-col">Middle</div>
-			<div class="right-col">Right</div>
-
-		</div>
-
-		<p>&nbsp;</p>
-		<p>There is a lot more that can be done and configured and it is recommended that you read the online documentation on layouts.<p>
-		<a href="http://getwebplate.com/documentation/layout" class="btn-primary">Read Documentation</a>
-
-	</div></div>
-
-	<!-- Forms -->
-	<div class="stripe" id="forms"><div class="contain">
-
-		<h3>Forms</h3>
-		<p>Getting truly universal forms and inputs can be tricky but Webplate has got you covered. Best of all, it looks and acts the same and is completely responsive across all devices, even touch screens.</p>
-
-		<p>HTML</p>
-
-<pre class="prettyprint linenums showcase-code">
-&lt;div class="formplate"&gt;
-    &lt;label for="text-input"&gt;Text Input:&lt;/label&gt;
-    &lt;input type="text" id="text-input" name="text-input"&gt;
-&lt;/div&gt;
-
-// Textarea
-&lt;div class="formplate"&gt;
-    &lt;textarea placeholder="Textarea"&gt;&lt;/textarea&gt;
-&lt;/div&gt;
-
-// Checkboxes
-&lt;div class="formplate"&gt;
-    &lt;input type="checkbox" name="checkbox-1" value="checkbox-1" id="checkbox-1"&gt;
-    &lt;label for="checkbox-1"&gt;Checkbox 1&lt;/label&gt;
-&lt;/div&gt;
-&lt;div class="formplate"&gt;
-    &lt;input type="checkbox" name="checkbox-2" value="checkbox-2" id="checkbox-2"&gt;
-    &lt;label for="checkbox-2"&gt;Checkbox 2&lt;/label&gt;
-&lt;/div&gt;
-&lt;div class="formplate"&gt;
-    &lt;input type="checkbox" name="checkbox-3" value="checkbox-3" id="checkbox-3"&gt;
-    &lt;label for="checkbox-3"&gt;Checkbox 3&lt;/label&gt;
-&lt;/div&gt;
-
-// Radio buttons
-&lt;div class="formplate"&gt;
-    &lt;input type="radio" name="radio" value="radio-1" id="radio-1"&gt;
-    &lt;label for="radio-1"&gt;Radio 1&lt;/label&gt;
-&lt;/div&gt;
-&lt;div class="formplate"&gt;
-    &lt;input type="radio" name="radio" value="radio-2" id="radio-2"&gt;
-    &lt;label for="radio-2"&gt;Radio 2&lt;/label&gt;
-&lt;/div&gt;
-&lt;div class="formplate"&gt;
-    &lt;input type="radio" name="radio" value="radio-3" id="radio-3"&gt;
-    &lt;label for="radio-3"&gt;Radio 3&lt;/label&gt;
-&lt;/div&gt;
-
-// Drop-down
-&lt;div class="formplate"&gt;
-    &lt;select&gt;
-        &lt;option value="1"&gt;Select Option 1&lt;/option&gt;
-        &lt;option value="2"&gt;Select Option 2&lt;/option&gt;
-        &lt;option value="3"&gt;Select Option 3&lt;/option&gt;
-    &lt;/select&gt;
-&lt;/div&gt;
-
-// Toggler
-&lt;div class="formplate"&gt;
-    &lt;input type="checkbox" class="toggler" name="toggler" value="toggler"&gt;
-&lt;/div&gt;
-</pre>
-
-		<p>RESULT</p>
-
-		<div class="col-double">
-
-			<div class="left">
-
-				<div class="formplate">
-				    <input type="text" placeholder="Text Input" name="text-input">
-				</div>
-
-				<div class="formplate">
-					<textarea placeholder="Textarea"></textarea>
-				</div>
-
-			</div>
-
-			<div class="right">
-
-				<div class="col-double">
-
-					<div class="left">
-
-						<div class="formplate">
-							<input type="checkbox" name="checkbox-1" value="checkbox-1" id="checkbox-1">
-							<label for="checkbox-1">Checkbox 1</label>
-						</div>
-						<div class="formplate">
-							<input type="checkbox" name="checkbox-2" value="checkbox-2" id="checkbox-2">
-							<label for="checkbox-2">Checkbox 2</label>
-						</div>
-						<div class="formplate">
-							<input type="checkbox" name="checkbox-3" value="checkbox-3" id="checkbox-3">
-							<label for="checkbox-3">Checkbox 3</label>
-						</div>
-						<br>
-						<div class="formplate">
-							<select>
-								<option value="1">Select Option 1</option>
-								<option value="2">Select Option 2</option>
-								<option value="3">Select Option 3</option>
-							</select>
-						</div>
-						<br>
-
-					</div>
-
-					<div class="right">
-
-						<div class="formplate">
-							<input type="radio" name="radio" value="radio-1" id="radio-1">
-							<label for="radio-1">Radio 1</label>
-						</div>
-						<div class="formplate">
-							<input type="radio" name="radio" value="radio-2" id="radio-2">
-							<label for="radio-2">Radio 2</label>
-						</div>
-						<div class="formplate">
-							<input type="radio" name="radio" value="radio-3" id="radio-3">
-							<label for="radio-3">Radio 3</label>
-						</div>
-						<br>
-						<div class="formplate">
-							<input type="checkbox" name="toggler" value="toggler" class="toggler">
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-
-		<br>
-		<p>For more information read the online documentation on forms.<p>
-		<a href="http://getwebplate.com/documentation/forms" class="btn-primary">Read Documentation</a>
-
-	</div></div>
-
-	<!-- Buttons -->
-	<div class="stripe" id="buttons"><div class="contain">
-
-		<h3>Buttons</h3>
-		<p>A core component of any project are the buttons and Webplate uses a custom plugin called <a href="http://getwebplate.com/plugins/buttonplate">Buttonplate</a>. See a few example below.</p>
-
-		<p>HTML</p>
-
-<pre class="prettyprint linenums showcase-code">
-&lt;a href="#" class="button"&gt;Basic&lt;/a&gt;
-&lt;a href="#" class="button blue small"&gt;Small Blue&lt;/a&gt;
-&lt;a href="#" class="button green"&gt;Green&lt;/a&gt;
-&lt;a href="#" class="button orange large"&gt;Orange Large&lt;/a&gt;
-&lt;a href="#" class="button red pill extra-large"&gt;Red Pill Extra Large&lt;/a&gt;
-
-// Button dropdown
-&lt;div class="button purple drop-down"&gt;
-    Purple Drop-down&lt;div class="arrow"&gt;&lt;/div&gt;
-    &lt;ul&gt;
-        &lt;li class="line-bottom"&gt;&lt;a href="#"&gt;Link 1&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#"&gt;Link 2&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#"&gt;Link 3&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-</pre>
-
-		<p>RESULT</p>
-
-		<a href="#" class="button">Basic</a>
-		<a href="#" class="button blue small">Small Blue</a>
-		<a href="#" class="button green">Green</a>
-		<a href="#" class="button orange large">Orange Large</a>
-		<a href="#" class="button red pill extra-large">Red Pill Extra Large</a>
-
-		<div class="button purple drop-down">
-			Purple Drop-Down<div class="arrow"></div>
-			<ul>
-				<li class="line-bottom"><a href="#">Link 1</a></li>
-				<li><a href="#">Link 2</a></li>
-				<li><a href="#">Link 3</a></li>
-			</ul>
-		</div>
-
-		<p>&nbsp;</p>
-		<p>For more information read the online documentation on buttons.<p>
-		<a href="http://getwebplate.com/documentation/buttons" class="btn-primary">Read Documentation</a>
-
-	</div></div>
+	<h3>About Me</h3>
+  		<div class="row">
+  			<div class="col-md-8">
+  			<br><br>
+  				<p align = "justify"> Currently Pursuing PhD in Department of Electrical Engineering in <a href = "http://www.iitkgp.ac.in">Indian Institute of Technology, Kharagpur</a> .
+  				<br><br>
+  				Previously, received M Tech  in  Instrumentation from  <a href = "http://www.iitkgp.ac.in">Indian Institute of Technology, Kharagpur</a>  in 2012 and B Tech (Hons. ) from Calicut University, Kerala in 2010 in Electrical and Electronics Engg.
+  				<br><br>
+  			 Areas of expertise include Computer vision, Image processing, Pattern recognition, Machine Learning, Eye tracking, Python, C and C++ programming, Micro controller programming, and Embedded System Design.
+  	<br><br>
+    <div class="puba"> <i><b>Member, IEEE</i></div>
+
+
+      <div class="puba"> <i><b>Member, COGAIN</i></div>
+
+        	</p>
+
+  			</div>
+
+
+                </div>
+            <div class="panel panel-default">
+        <div class="panel-heading">
+          	<h4>Research Interests</h4>
+
+        </div>
+
+        <div class="panel-body">
+          <div class="row">
+              <div class="col-md-12">
+
+                  <p>  Embedded Signal and Image Processing</p>
+                  <p>    Computer Vision and Applications</p>
+
+                  <p>  Pattern Recognition and Machine Learning</p>
+                  <p>   Eye Gaze Tracking and Applications</p>
+                  <p>   Human Computer Interaction</p>
+
+
+                  <a href="#" class="scroll-down icon-angle-down"></a>
+
+
+
+              </div>
+          </div>
+        </div>
+          </div>
+
+
+
+          <br><br>
+          <br><br>
+          <br><br>
+          <br><br>
+
+
+
+		<h3>Research</h3>
+    <br><br>
+      <!-- Project One -->
+       <div class="pubwrap">
+    <div class="row">
+
+      <div class="col-md-6">
+      <div class="pub">
+      <div class="pubt"> A Score-level Fusion Method for Eye Movement Biometrics</div>
+      <hr><br>
+      <div class="pubd">
+        <p align = "justify"> Eye movements contain abundant information about cognitive brain functions, neural pathways,
+etc. In our approach, eye movement data is classified into fixations and saccades. Features extracted from fixations and saccades are used in a machine learning
+framework for biometric authentication. A score fusion approach is adopted to classify the data
+in the output layer. In the evaluation stage, the algorithm has been tested using two types of stimuli:
+random dot following on a screen and text reading. The results indicate the strength of eye movement
+pattern as a biometric modality. The algorithm has been evaluated on BioEye 2015 database and found
+to outperform all the other methods. Eye movements are generated by a complex oculomotor plant
+which is very hard to spoof by mechanical replicas. Use of eye movement dynamics along with iris
+recognition technology may lead to a robust counterfeit-resistant person identification system. </p> </div>
+      <div class="puba"> Pattern Recognition Letters (Accepted for publication)</div>
+      <div class="pubv">DOI:</div>
+      <div class="publ">
+      <ul>
+      <li><a href = "http://arxiv.org/find/all/1/all:+AND+anjith+george/0/1/0/all/0/1">arXiv Link</a></li>
+      </ul>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+
+
+
+    <!-- Project One -->
+
+  				<div class="col-md-6">
+  				<div class="pub">
+  				<div class="pubt"> A Vision Based System for Monitoring the Loss of Attention in Automotive Drivers</div>
+          <hr><br>
+  				<div class="pubd"> <p align = "justify">On board monitoring of the alertness level of an automotive driver has been a challenging research in transportation safety and management. In this paper, we propose a robust real time embedded platform to monitor the loss of attention of the driver during day as well as night driving conditions. The PERcentage of eye CLOSure (PERCLOS) has been used as the indicator of the alertness level.  The algorithm has been cross validated using brain signals and finally been implemented on a Single Board Computer (SBC). The system is found to be robust under actual driving conditions.  </div>
+  			</p>	<div class="puba"> 	Intelligent Transportation Systems, IEEE Transactions on 14, no. 4 (2013): 1825-1838</div>
+  				<div class="pubv">DOI: 10.1109/TITS.2013.2271052</div>
+  				<div class="publ">
+  				<ul>
+  				<li><a href = "http://arxiv.org/find/all/1/all:+AND+anjith+george/0/1/0/all/0/1">arXiv Link</a></li>
+  				</ul>
+  				</div>
+  					</div>
+  				</div>
+
+
+
+
+      <br><br>
+          <!-- Project One -->
+
+  				<div class="col-md-6">
+  				<div class="pub">
+  				<div class="pubt"> A Real Time Facial Expression Classification System Using Local Binary Patterns</div>
+          <hr><br>
+  				<div class="pubd"> <p align = "justify">Facial expression analysis is one of the popular fields
+  of research in human computer interaction (HCI). It has several
+  applications in next generation user interfaces, human emotion
+  analysis, behavior and cognitive modeling. In this paper, a facial
+  expression classification algorithm is proposed which uses Haar
+  classifier for face detection purpose, Local Binary Patterns(LBP)
+  histogram of different block sizes of a face image as feature
+  vectors and classifies various facial expressions using Principal
+  Component Analysis (PCA). The algorithm is implemented in
+  real time for expression classification since the computational
+  complexity of the algorithm is small. A customizable approach is
+  proposed for facial expression analysis, since the various
+  expressions and intensity of expressions vary from person to
+  person. The system uses grayscale frontal face images of a person
+  to classify six basic emotions namely happiness, sadness, disgust,
+  fear, surprise and anger. </p> </div>
+  				<div class="puba">IEEE Proceedings of 4 th International Conference on Intelligent Human Computer Interaction</div>
+  				<div class="publ">
+  				<ul>
+  				<li><a href = "http://arxiv.org/find/all/1/all:+AND+anjith+george/0/1/0/all/0/1">arXiv Link</a></li>
+  				</ul>
+  				</div>
+  					</div>
+  				</div>
+
+
+
+
+
+
+          <br><br>
+              <!-- Project One -->
+
+
+              <div class="col-md-6">
+      				<div class="pub">
+      				<div class="pubt"> A Video Database of Human Faces under Near Infra-Red
+  Illumination for Human Computer Interaction Aplications</div>
+              <hr><br>
+      				<div class="pubd"> <p align = "justify">Human Computer Interaction (HCI) is an evolving area
+  of research for coherent communication between computers and
+  human beings. Some of the important applications of HCI as
+  reported in literature are face detection, face pose estimation, face
+  tracking and eye gaze estimation. Development of algorithms for
+  these applications is an active field of research. However,
+  availability of standard database to validate such algorithms is
+  insufficient. This paper discusses the creation of such a database
+  created under Near Infra-Red (NIR) illumination. NIR
+  illumination has gained its popularity for night mode applications
+  since prolonged exposure to Infra-Red (IR) lighting may lead to
+  many health issues. The database contains NIR videos of 60
+  subjects in different head orientations and with different facial
+  expressions, facial occlusions and illumination variation. This new
+  database can be a very valuable resource for development and
+  evaluation of algorithms on face detection, eye detection, head
+  tracking, eye gaze tracking etc. in NIR lighting. </p> </div>
+      				<div class="puba">IEEE Proceedings of 4 th International Conference on Intelligent Human Computer Interaction</div>
+      				<div class="publ">
+      				<ul>
+      				<li><a href = "https://sites.google.com/site/nirdatabase/download">Database Download Link</a></li>
+      				</ul>
+      				</div>
+      					</div>
+      				</div>
+
+
+
+
+                  <br><br>
+                      <!-- Project One -->
+
+              				<div class="col-md-6">
+              				<div class="pub">
+              				<div class="pubt"> A Framework for Fast Face and Eye Detection</div>
+                      <hr><br>
+              				<div class="pubd"> <p align = "justify">Face detection is an essential step in many computer
+  vision applications like surveillance, tracking, medical analysis,
+  facial expression analysis etc. Several approaches have been made
+  in the direction of face detection. Among them, Haar-like features
+  based method is a robust method. In spite of the robustness,
+  Haar - like features work with some limitations. However, with
+  some simple modifications in the algorithm, its performance can
+  be made faster and more robust. The present work refers to
+  the increase in speed of operation of the original algorithm by
+  down sampling the frames and its analysis with different scale
+  factors. It also discusses the detection of tilted faces using an
+  affine transformation of the input image. </p> </div>
+              				<div class="puba">arXiv</div>
+              				<div class="publ">
+              				<ul>
+              					<li><a href = "http://arxiv.org/find/all/1/all:+AND+anjith+george/0/1/0/all/0/1">arXiv Link</a></li>
+              				</ul>
+              				</div>
+              					</div>
+              				</div>
+
+
+<h3> Resume</h3>
+
+                    <br>
+
+
+  		<div class="columns download">
+              <p>
+                  <div class="publ">
+  				<ul>
+  				<b>Curriculum Vitae :</b>
+  				<li><a href="Files/resume.pdf">Download CV</a></li>
+  				<span style="color: #777"><br>Updated on 30-Oct-2015</span>
+  				</ul>
+   				</div>
+   			</p>
+   		</div>
+
+
+   		<br>
+   		<p> <b> Web Version (Short) : </p>
+
+
+  		<div class="panel panel-default">
+  			<div class="panel-heading">
+  				<h3 class="panel-title"><b>Education</b></h3>
+  			</div>
+
+        <div class="panel-body">
+          <div class="row">
+              <div class="col-md-12">
+                  <h4><b><a href="http://www.iitkgp.ac.in/"> Indian Institute of Technology, Kharagpur (2012 - Current) </a></b></h4>
+                  <p> PhD (Pursuing) in Electrical Engineering
+                  <br> Computer Vision  </p>
+
+  <hr>
+
+  		        		<h4><b><a href="http://www.iitkgp.ac.in/"> Indian Institute of Technology, Kharagpur (2010 - 2012) </a></b></h4>
+  		        		<p> M. Tech (Instrumentation)in Electrical Engineering
+  		        		<br> CGPA : 9.17 /10  </p>
+
+        <hr>
+
+                <h4><b><a href="http://www.iitkgp.ac.in/"> Calicut University, Kerala (2006 - 2010) </a></b></h4>
+                <p> B. Tech (Hons. ) in Electrical and Electronics Engineering </p>
+
+            </div>
+        </div>
+      </div>
+        </div>
+
+
+  		<div class="panel panel-default">
+  			<div class="panel-heading">
+  				<h3 class="panel-title"><b>Publications</b></h3>
+  			</div>
+  			<div class="panel-body">
+  				<div class="row">
+  		    		<div class="col-md-12">
+                <p><b><a href ="."> A Score-level Fusion Method for Eye Movement Biometrics </a></b> <br>
+               <b>A. George</b>, A. Routray <br>
+                <i> Pattern Recognition Letters (accepted) </i> <p>
+                <hr>
+  		        		<p><b><a href ="."> A Vision Based System for Monitoring the Loss of Attention in Automotive Drivers </a></b> <br>
+  		        		A. Dasgupta , <b>A. George</b>, SL. Happy, A. Routray <br>
+  		        		<i> Intelligent Transportation Systems, IEEE Transactions on </i> <p>
+  				        <hr>
+  				        <p><b><a href ="."> An on-board vision based system for drowsiness detection in automotive drivers </a></b> <br>
+  				        A. Dasgupta , <b>A. George</b>, SL. Happy, A. Routray <br>
+  				        <i> International Journal of Advances in Engineering Sciences and Applied Mathematics </i> <p>
+  				        <hr>
+  				        <p><b><a href ="."> A real time facial expression classification system using Local Binary Patterns </a></b> <br>
+  				        SL. Happy, <b>A. George</b>, A. Routray <br>
+  				        <i> Intelligent Human Computer Interaction (IHCI), 2012 4th International Conference on </i> <p>
+
+  				        <hr>
+  				        <p><b><a href ="."> A video database of human faces under near Infra-Red illumination for human computer interaction applications </a></b> <br>
+  				        SL. Happy, A. Dasgupta, <b>A. George</b>, A. Routray <br>
+  				        <i> Intelligent Human Computer Interaction (IHCI), 2012 4th International Conference on </i> <p>
+
+  				        <hr>
+  				        <p><b><a href ="."> A Drowsiness Detection Scheme Based on Fusion of Voice and Vision Cues </a></b> <br>
+  				         A. Dasgupta, B. Kabi, <b>A. George</b>, SL. Happy, A. Routray <br>
+  				        <i> arXiv preprint arXiv:1509.04887 </i> <p>
+
+  				         <hr>
+  				        <p><b><a href ="."> Design and Implementation of Real-time Algorithms for Eye Tracking and PERCLOS Measurement for on board Estimation of Alertness of Drivers </a></b> <br>
+  				         <b>A. George</b>, A. Routray <br>
+  				        <i> arXiv preprint arXiv:1505.06162 </i> <p>
+
+  				        <hr>
+  				        <p><b><a href ="."> An On-board Video Database of Human Drivers </a></b> <br>
+  				         A. Dasgupta, <b>A. George</b>, SL Happy, A. Routray <br>
+  				        <i> arXiv preprint arXiv:1509.04853</i> <p>
+
+  				        <hr>
+  				        <p><b><a href ="."> A Framework for Fast Face and Eye Detection </a></b> <br>
+  				          <b>A. George</b>, A. Dasgupta, A. Routray <br>
+  				        <i> arXiv preprint arXiv:1505.03344</i> <p>
+
+
+
+
+  		    		</div>
+  				</div>
+  			</div>
+  		</div>
+
+  	<div class="panel panel-default">
+  			<div class="panel-heading">
+  				<h3 class="panel-title"><b>Patents</b></h3>
+  			</div>
+
+        <div class="panel-body">
+          <div class="row">
+              <div class="col-md-12">
+                  <h4><b><a href="http://www.iitkgp.ac.in/"> A SYSTEM FOR REAL-TIME ASSESSMENT OF ALERTNESS LEVEL OF HUMAN BEINGS </a></b></h4>
+                  <p> A. Routray, A. Dasgupta, <b>A. George</b>, SL. Happy
+                  <br> 634/KOL/2013 (Published) </p>
+              </div>
+          </div>
+        </div>
+        </div>
+
+
+        	<div class="panel panel-default">
+  			<div class="panel-heading">
+  				<h3 class="panel-title"><b> Awards and Honours</b></h3>
+  			</div>
+
+        <div class="panel-body">
+          <div class="row">
+              <div class="col-md-12">
+                  <h4><b><a href="https://bioeye.cs.txstate.edu/results.php"> <b>Winner</b>, BioEye 2015, International Eye Movement based biometrics competition, Organized by IEEE BTAS</a></b></h4>
+                  <p> <b>A. George</b>, A. Routray</p>
+                  <hr>
+                   <h4><b><a href="https://bioeye.cs.txstate.edu/results.php"> Finalist, Intel IEC 2012
+  </a></b></h4>
+                  <p> <b>A. George</b>, A. Dasgupta, A. Routray</p>
+
+
+
+
+
+              </div>
+          </div>
+        </div>
+  </div>
+
+
+
+
+
+  <div class="stripe"><div class="contain">
+
+		<h3>Contact</h3>
+
+  		<div class="row">
+  			<div class="col-md-4">
+  				<div class="panel panel-default">
+  					<div class="panel-heading">
+  						<h3 class="panel-title"><b>Address</b></h3>
+  					</div>
+  					<div class="panel-body">
+  						<div class="row">
+  							<div class="col-md-12">
+  								<p> C-201, JCB Hall of Residence <br>
+  								Indian Institute of Technology, Kharagpur, <br>
+  								West Bengal, <br>
+  								India - 721302 </p>
+
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+  			</div>
+
+  			<div class="col-md-8">
+  				<div class="row">
+  					<div class="col-md-6">
+  						<div class="panel panel-default">
+  							<div class="panel-heading">
+  								<h3 class="panel-title"><b>Email</b></h3>
+  							</div>
+  							<div class="panel-body">
+  								<div class="row">
+  									<div class="col-md-12">
+  										<p> anjith2006@gmail.com</p>
+  									</div>
+  								</div>
+  							</div>
+  						</div>
+  					</div>
+
+  					<div class="col-md-6">
+  						<div class="panel panel-default">
+  							<div class="panel-heading">
+  								<h3 class="panel-title"><b>Phone</b></h3>
+  							</div>
+  							<div class="panel-body">
+  								<div class="row">
+  									<div class="col-md-12">
+  										<p> +91 7501 549613</p>
+  									</div>
+  								</div>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+
+  				<div class="row">
+  					<div class="col-md-6">
+  						<div class="panel panel-default">
+  							<div class="panel-heading">
+  								<h3 class="panel-title"><b>Others</b></h3>
+  							</div>
+  							<div class="panel-body">
+  								<div class="col-md-3">
+  									<a href="http://github.com/anjith2006"><i class="fa fa-github fa-2x"></i></a>
+  								</div>
+  								<div class="col-md-3">
+  									<a href="https://www.facebook.com/anjith.george"><i class="fa fa-facebook fa-2x"></i></a>
+  								</div>
+  								<div class="col-md-3">
+  									<a href="https://scholar.google.co.in/citations?user=4CCrDp0AAAAJ"><i class="fa fa-google-plus fa-2x"></i></a>
+  								</div>
+  								<div class="col-md-3">
+  									<a href="https://in.linkedin.com/pub/anjith-george/29/25/874"><i class="fa fa-linkedin fa-2x"></i></a>
+  								</div>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+  			</div>
+  			<div class="col-md-6">
+  						<div class="panel panel-default">
+  							<div class="panel-heading">
+  								<h3 class="panel-title"><b>Links</b></h3>
+  							</div>
+  							<div class="panel-body">
+  								<div class="row">
+  									<div class="col-md-12">
+  										<h4><b><a href="http://www.dak.iitkgp.ernet.in/phd/profile.php?roll=12EE91R06"> Doctorates' Information System, IIT, Kharagpur. </a></b></h4>
+  										<hr>
+  										<h4><b><a href="https://scholar.google.co.in/citations?user=4CCrDp0AAAAJ&hl=en"> Google Scholar Profile </a></b></h4>
+  										<hr>
+  										<h4><b><a href="http://arxiv.org/find/all/1/all:+AND+anjith+george/0/1/0/all/0/1"> arXiv Page </a></b></h4>
+  										<hr>
+  										<h4><b><a href="https://github.com/anjith2006"> GitHub Repo </a></b></h4>
+  										<hr>
+  										<h4><b><a href="http://in.linkedin.com/pub/anjith-george/29/25/874"> LinkedIn Profile </a></b></h4>
+  										<hr>
+  										<h4><b><a href="https://sites.google.com/site/anjithgeorgecareer/home"> Career Profile </a></b></h4>
+  										<hr>
+  										<h4><b><a href="http://www.researchgate.net/profile/Anjith_George2"> ResearchGate Profile </a></b></h4>
+  										<hr>
+  										<h4><b><a href="http://dblp.uni-trier.de/pers/hd/g/George:Anjith"> DBLP Profile </a></b></h4>
+
+
+
+
+
+
+
+  									</div>
+  								</div>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+
+
+  		</div>
+  	</div>
+
+
+
 
 	<!-- Documentation -->
-	<div class="stripe"><div class="contain">
 
-		<h3>Documentation</h3>
-		<p>You are just starting to scratch the surface of what Webplate is capable of. It should be enough to get started but for more in depth information and full referencing visit the online documentation at <a href="http://getwebplate.com/documentation">http://getwebplate.com/documentation</a>.</p>
 
 	</div></div>
 
 	<!-- Footer -->
 	<div class="stripe dark" id="footer"><div class="contain">
 
-		<h3>Copyright &amp; License Stuff</h3>
-		<h6>You can do whatever you want to with Webplate or its plugins, just mention it in your readme. Everything falls under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">Apache License 2.0</a> which you can read through if you really want to.</h6>
-
-		<div><br>
-			Updates <a href="https://twitter.com/webplatetweets" target="_blank">@webplatetweets</a>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;&nbsp;Author <a href="https://twitter.com/chrishumboldt" target="_blank">@chrishumboldt</a>
-		</div>
+		<h3>Anjith George, 2015.</h3>
 
 	</div></div>
 
